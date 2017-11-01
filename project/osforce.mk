@@ -3,7 +3,7 @@ ifeq ($(OS),midipix)
 build/sys/cygwin.h:
 			touch build/sys/cygwin.h
 
-host.tag:		build/sys/cygwin.h
+host.tag:		tree.tag build/sys/cygwin.h
 
 src/config.lo:		src/config.u16.c $(ALL_HEADERS) host.tag tree.tag
 			$(CC) -c -o $@ $< $(CFLAGS_SHARED)
