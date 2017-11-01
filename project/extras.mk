@@ -19,3 +19,4 @@ src/res.o:		$(SOURCE_DIR)/src/res.rc $(ALL_HEADERS) host.tag tree.tag
 
 progress:		src/base64.o  src/minibidi.o  src/sixel_hls.o  src/termline.o
 progress:		src/std.o     src/mcwidth.o
+progress:		src/config.o
