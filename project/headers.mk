@@ -20,6 +20,10 @@ API_HEADERS = \
 	$(SOURCE_DIR)/src/winpriv.h \
 	$(SOURCE_DIR)/src/winsearch.h \
 
+HOST_HEADERS = \
+	$(SOURCE_DIR)/src/host/midipix/charset.h \
+	$(SOURCE_DIR)/src/host/midipix/std.h \
+
 INTERNAL_HEADERS = \
 
-ALL_HEADERS = $(API_HEADERS) $(INTERNAL_HEADERS)
+ALL_HEADERS = $(API_HEADERS) $(INTERNAL_HEADERS) $(HOST_HEADERS)
