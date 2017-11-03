@@ -5,6 +5,17 @@ build/sys/cygwin.h:
 
 host.tag:		tree.tag build/sys/cygwin.h
 
+src/child.lo:		src/child.u16.c $(ALL_HEADERS) host.tag tree.tag
+			$(CC) -c -o $@ $< $(CFLAGS_SHARED)
+
+src/child.o:		src/child.u16.c $(ALL_HEADERS) host.tag tree.tag
+			$(CC) -c -o $@ $< $(CFLAGS_STATIC)
+
+
+
+src/child.u16.c:	$(SOURCE_DIR)/src/child.c $(ALL_HEADERS) host.tag tree.tag
+			$(PROJECT_DIR)/project/literals.sh $< > $@
+
 src/config.lo:		src/config.u16.c $(ALL_HEADERS) host.tag tree.tag
 			$(CC) -c -o $@ $< $(CFLAGS_SHARED)
 
@@ -33,6 +44,7 @@ clean-host:
 			rm -f build/sys/cygwin.h
 
 clean-gen:
+			rm -f src/child.u16.c
 			rm -f src/config.u16.c
 			rm -f src/termclip.u16.c
 

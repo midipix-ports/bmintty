@@ -12,6 +12,9 @@ sed \
 		-e 's/_W("downloaded \/ give me a name!")/U16_LITERAL_DOWNLOADED/g' \
 		-e 's/W("")/U16_LITERAL_NULL_STRING/g'                              \
 		-e 's/W(" ")/U16_LITERAL_EMPTY_STRING/g'                            \
+		-e 's/W("-")/U16_LITERAL_DASH/g'                                    \
+		-e 's/W("\\\\\\\\?\\\\")/U16_LITERAL_DOS_BASE/g'                    \
+		-e 's/W("\\\\\\\\?\\\\UNC\\\\")/U16_LITERAL_UNC_BASE/g'             \
 		-e 's/W(".po")/U16_LITERAL_PO/g'                                    \
 		-e 's/W("=")/U16_LITERAL_EQUALS/g'                                  \
 		-e 's/W("@")/U16_LITERAL_AT/g'                                      \
