@@ -18,5 +18,6 @@ src/res.o:		$(SOURCE_DIR)/src/res.rc $(ALL_HEADERS) host.tag tree.tag
 			$(RC) -o $@ -c 65001 --preprocessor '$(CC) -E -xc -DRC_INVOKED $(CFLAGS)' $<
 
 progress:		src/base64.o  src/minibidi.o  src/sixel_hls.o  src/termline.o
-progress:		src/std.o     src/mcwidth.o
-progress:		src/config.o
+progress:		src/std.o     src/mcwidth.o   src/sixel.o      src/res.o
+progress:		src/config.o  src/wintip.o    src/charset.o    src/termmouse.o
+progress:		src/ctrls.o   src/textprint.o
