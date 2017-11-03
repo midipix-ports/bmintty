@@ -15,6 +15,7 @@ sed \
 		-e 's/W("-")/U16_LITERAL_DASH/g'                                    \
 		-e 's/W("\\\\\\\\?\\\\")/U16_LITERAL_DOS_BASE/g'                    \
 		-e 's/W("\\\\\\\\?\\\\UNC\\\\")/U16_LITERAL_UNC_BASE/g'             \
+		-e 's/W("〳〴〵⌠⌡⏐")/U16_LITERAL_INTEGRAL_FAKED/g'                  \
 		-e 's/W(".po")/U16_LITERAL_PO/g'                                    \
 		-e 's/W("=")/U16_LITERAL_EQUALS/g'                                  \
 		-e 's/W("@")/U16_LITERAL_AT/g'                                      \
