@@ -16,6 +16,17 @@ src/config.o:		src/config.u16.c $(ALL_HEADERS) host.tag tree.tag
 src/config.u16.c:	$(SOURCE_DIR)/src/config.c $(ALL_HEADERS) host.tag tree.tag
 			$(PROJECT_DIR)/project/literals.sh $< > $@
 
+src/termclip.lo:	src/termclip.u16.c $(ALL_HEADERS) host.tag tree.tag
+			$(CC) -c -o $@ $< $(CFLAGS_SHARED)
+
+src/termclip.o:		src/termclip.u16.c $(ALL_HEADERS) host.tag tree.tag
+			$(CC) -c -o $@ $< $(CFLAGS_STATIC)
+
+
+
+src/termclip.u16.c:	$(SOURCE_DIR)/src/termclip.c $(ALL_HEADERS) host.tag tree.tag
+			$(PROJECT_DIR)/project/literals.sh $< > $@
+
 clean:			clean-gen clean-host
 
 clean-host:
@@ -23,5 +34,6 @@ clean-host:
 
 clean-gen:
 			rm -f src/config.u16.c
+			rm -f src/termclip.u16.c
 
 endif
