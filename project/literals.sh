@@ -10,6 +10,10 @@ sed \
 		-e 's/_W("\* Locale environm. \*")/U16_LITERAL_LOCENV/g'            \
 		-e 's/_W("= cfg. Text Locale =")/U16_LITERAL_LOCALE/g'              \
 		-e 's/_W("downloaded \/ give me a name!")/U16_LITERAL_DOWNLOADED/g' \
+		-e 's/_W("X")/U16_LITERAL_X/g'                                      \
+		-e 's/_W("▶")/U16_LITERAL_RIGHT_ARROW/g'                            \
+		-e 's/_W("◀")/U16_LITERAL_LEFT_ARROW/g'                             \
+		-e 's/W("BUTTON")/U16_LITERAL_BUTTON/g'                             \
 		-e 's/W("")/U16_LITERAL_NULL_STRING/g'                              \
 		-e 's/W(" ")/U16_LITERAL_EMPTY_STRING/g'                            \
 		-e 's/W("-")/U16_LITERAL_DASH/g'                                    \
