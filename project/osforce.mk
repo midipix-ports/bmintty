@@ -27,6 +27,17 @@ src/config.o:		src/config.u16.c $(ALL_HEADERS) host.tag tree.tag
 src/config.u16.c:	$(SOURCE_DIR)/src/config.c $(ALL_HEADERS) host.tag tree.tag
 			$(PROJECT_DIR)/project/literals.sh $< > $@
 
+src/printers.lo:	src/printers.u16.c $(ALL_HEADERS) host.tag tree.tag
+			$(CC) -c -o $@ $< $(CFLAGS_SHARED)
+
+src/printers.o:		src/printers.u16.c $(ALL_HEADERS) host.tag tree.tag
+			$(CC) -c -o $@ $< $(CFLAGS_STATIC)
+
+
+
+src/printers.u16.c:	$(SOURCE_DIR)/src/printers.c $(ALL_HEADERS) host.tag tree.tag
+			$(PROJECT_DIR)/project/literals.sh $< > $@
+
 src/termclip.lo:	src/termclip.u16.c $(ALL_HEADERS) host.tag tree.tag
 			$(CC) -c -o $@ $< $(CFLAGS_SHARED)
 
@@ -46,6 +57,7 @@ clean-host:
 clean-gen:
 			rm -f src/child.u16.c
 			rm -f src/config.u16.c
+			rm -f src/printers.u16.c
 			rm -f src/termclip.u16.c
 
 endif
