@@ -13,6 +13,7 @@ sed \
 		-e 's/_W("X")/U16_LITERAL_X/g'                                      \
 		-e 's/_W("▶")/U16_LITERAL_RIGHT_ARROW/g'                            \
 		-e 's/_W("◀")/U16_LITERAL_LEFT_ARROW/g'                             \
+		-e 's/_W("B\&asic colours:")/U16_LITERAL_BASIC_COLOURS/g'           \
 		-e 's/W("BUTTON")/U16_LITERAL_BUTTON/g'                             \
 		-e 's/W("")/U16_LITERAL_NULL_STRING/g'                              \
 		-e 's/W(" ")/U16_LITERAL_EMPTY_STRING/g'                            \
@@ -69,6 +70,16 @@ sed \
 		-e 's/W("Fraktur")/U16_LITERAL_FRAKTUR/g'                           \
 		-e 's/W("Blackletter")/U16_LITERAL_BLACKLETTER/g'                   \
 		-e 's/W("info")/U16_LITERAL_INFO/g'                                 \
+		-e 's/W("cache")/U16_LITERAL_CACHE/g'                               \
+		-e 's/W("data")/U16_LITERAL_DATA/g'                                 \
+		-e 's/W("home")/U16_LITERAL_HOME/g'                                 \
+		-e 's/W("mnt")/U16_LITERAL_MNT/g'                                   \
+		-e 's/W("www\.")/U16_LITERAL_WWW/g'                                 \
+		-e 's/W("root")/U16_LITERAL_ROOT/g'                                 \
+		-e 's@W("/rootfs")@U16_LITERAL_ROOTFS@g'                            \
+		-e 's@W("/lxss")@U16_LITERAL_LXSS@g'                                \
+		-e 's@W("/cygdrive")@U16_LITERAL_DEV_FS@g'                          \
 		-e 's/W("charnames\.txt")/U16_LITERAL_CHARNAMES_TXT/g'              \
+		-e 's/W("Static")/U16_LITERAL_STATIC/g'                             \
 		-e 's/W("http:\/\/ciembor.github.io\/4bit\/")/U16_LITERAL_COLOR_SCHEME_DESIGNER/g' \
 	$1
