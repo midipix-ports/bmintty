@@ -66,5 +66,9 @@ sed \
 		-e 's/W("ftp:")/U16_LITERAL_FTP/g'                                  \
 		-e 's/W("ftps:")/U16_LITERAL_FTPS/g'                                \
 		-e 's/W("themes")/U16_LITERAL_THEME/g'                              \
+		-e 's/W("Fraktur")/U16_LITERAL_FRAKTUR/g'                           \
+		-e 's/W("Blackletter")/U16_LITERAL_BLACKLETTER/g'                   \
+		-e 's/W("info")/U16_LITERAL_INFO/g'                                 \
+		-e 's/W("charnames\.txt")/U16_LITERAL_CHARNAMES_TXT/g'              \
 		-e 's/W("http:\/\/ciembor.github.io\/4bit\/")/U16_LITERAL_COLOR_SCHEME_DESIGNER/g' \
 	$1

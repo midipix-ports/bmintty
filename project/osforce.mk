@@ -59,6 +59,15 @@ src/winsearch.o:	src/winsearch.u16.c $(ALL_HEADERS) host.tag tree.tag
 src/winsearch.u16.c:	$(SOURCE_DIR)/src/winsearch.c $(ALL_HEADERS) host.tag tree.tag
 			$(PROJECT_DIR)/project/literals.sh $< > $@
 
+src/wintext.lo:		src/wintext.u16.c $(ALL_HEADERS) host.tag tree.tag
+			$(CC) -c -o $@ $< $(CFLAGS_SHARED)
+
+src/wintext.o:		src/wintext.u16.c $(ALL_HEADERS) host.tag tree.tag
+			$(CC) -c -o $@ $< $(CFLAGS_STATIC)
+
+src/wintext.u16.c:	$(SOURCE_DIR)/src/wintext.c $(ALL_HEADERS) host.tag tree.tag
+			$(PROJECT_DIR)/project/literals.sh $< > $@
+
 clean:			clean-gen clean-host
 
 clean-host:
@@ -71,5 +80,6 @@ clean-gen:
 			rm -f src/term.u16.c
 			rm -f src/termclip.u16.c
 			rm -f src/winsearch.u16.c
+			rm -f src/wintext.u16.c
 
 endif
