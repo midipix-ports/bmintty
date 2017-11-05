@@ -24,3 +24,4 @@ progress:		src/ctrls.o   src/textprint.o src/termclip.o   src/child.o
 progress:		src/term.o    src/printers.o  src/winsearch.o  src/winimg.o
 progress:		              src/wintext.o   src/winctrls.o
 progress:		              src/termout.o   src/windialog.o
+progress:		                              src/winclip.o

@@ -14,13 +14,14 @@ sed \
 		-e 's/_W("▶")/U16_LITERAL_RIGHT_ARROW/g'                            \
 		-e 's/_W("◀")/U16_LITERAL_LEFT_ARROW/g'                             \
 		-e 's/_W("B\&asic colours:")/U16_LITERAL_BASIC_COLOURS/g'           \
+		-e 's/W("\\n")/U16_LITERAL_NEWLINE/g'                                \
 		-e 's/W("BUTTON")/U16_LITERAL_BUTTON/g'                             \
 		-e 's/W("")/U16_LITERAL_NULL_STRING/g'                              \
 		-e 's/W(" ")/U16_LITERAL_EMPTY_STRING/g'                            \
 		-e 's/W("-")/U16_LITERAL_DASH/g'                                    \
 		-e 's/W("\\\\\\\\?\\\\")/U16_LITERAL_DOS_BASE/g'                    \
 		-e 's/W("\\\\\\\\?\\\\UNC\\\\")/U16_LITERAL_UNC_BASE/g'             \
-		-e 's/W("〳〴〵⌠⌡⏐")/U16_LITERAL_INTEGRAL_FAKED/g'                     \
+		-e 's/W("〳〴〵⌠⌡⏐")/U16_LITERAL_INTEGRAL_FAKED/g'                  \
 		-e 's/W(".po")/U16_LITERAL_PO/g'                                    \
 		-e 's/W("=")/U16_LITERAL_EQUALS/g'                                  \
 		-e 's/W("@")/U16_LITERAL_AT/g'                                      \
@@ -76,6 +77,7 @@ sed \
 		-e 's/W("mnt")/U16_LITERAL_MNT/g'                                   \
 		-e 's/W("www\.")/U16_LITERAL_WWW/g'                                 \
 		-e 's/W("root")/U16_LITERAL_ROOT/g'                                 \
+		-e 's@W("/mnt/")@U16_LITERAL_MNT_FS@g'                              \
 		-e 's@W("/rootfs")@U16_LITERAL_ROOTFS@g'                            \
 		-e 's@W("/lxss")@U16_LITERAL_LXSS@g'                                \
 		-e 's@W("/cygdrive")@U16_LITERAL_DEV_FS@g'                          \

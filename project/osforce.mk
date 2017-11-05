@@ -59,6 +59,15 @@ src/termout.o:		src/termout.u16.c $(ALL_HEADERS) host.tag tree.tag
 src/termout.u16.c:	$(SOURCE_DIR)/src/termout.c $(ALL_HEADERS) host.tag tree.tag
 			$(PROJECT_DIR)/project/literals.sh $< > $@
 
+src/winclip.lo:		src/winclip.u16.c $(ALL_HEADERS) host.tag tree.tag
+			$(CC) -c -o $@ $< $(CFLAGS_SHARED)
+
+src/winclip.o:		src/winclip.u16.c $(ALL_HEADERS) host.tag tree.tag
+			$(CC) -c -o $@ $< $(CFLAGS_STATIC)
+
+src/winclip.u16.c:	$(SOURCE_DIR)/src/winclip.c $(ALL_HEADERS) host.tag tree.tag
+			$(PROJECT_DIR)/project/literals.sh $< > $@
+
 src/winctrls.lo:	src/winctrls.u16.c $(ALL_HEADERS) host.tag tree.tag
 			$(CC) -c -o $@ $< $(CFLAGS_SHARED)
 
@@ -108,6 +117,7 @@ clean-gen:
 			rm -f src/termclip.u16.c
 			rm -f src/termout.u16.c
 			rm -f src/winctrls.u16.c
+			rm -f src/winclip.u16.c
 			rm -f src/windialog.u16.c
 			rm -f src/winsearch.u16.c
 			rm -f src/wintext.u16.c
