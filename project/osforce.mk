@@ -1,6 +1,6 @@
 ifeq ($(OS),midipix)
 
-build/sys/cygwin.h:
+build/sys/cygwin.h:	tree.tag
 			touch build/sys/cygwin.h
 
 host.tag:		tree.tag build/sys/cygwin.h
