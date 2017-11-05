@@ -59,6 +59,15 @@ src/winctrls.o:		src/winctrls.u16.c $(ALL_HEADERS) host.tag tree.tag
 src/winctrls.u16.c:	$(SOURCE_DIR)/src/winctrls.c $(ALL_HEADERS) host.tag tree.tag
 			$(PROJECT_DIR)/project/literals.sh $< > $@
 
+src/windialog.lo:	src/windialog.u16.c $(ALL_HEADERS) host.tag tree.tag
+			$(CC) -c -o $@ $< $(CFLAGS_SHARED)
+
+src/windialog.o:	src/windialog.u16.c $(ALL_HEADERS) host.tag tree.tag
+			$(CC) -c -o $@ $< $(CFLAGS_STATIC)
+
+src/windialog.u16.c:	$(SOURCE_DIR)/src/windialog.c $(ALL_HEADERS) host.tag tree.tag
+			$(PROJECT_DIR)/project/literals.sh $< > $@
+
 src/winsearch.lo:	src/winsearch.u16.c $(ALL_HEADERS) host.tag tree.tag
 			$(CC) -c -o $@ $< $(CFLAGS_SHARED)
 
@@ -89,6 +98,7 @@ clean-gen:
 			rm -f src/term.u16.c
 			rm -f src/termclip.u16.c
 			rm -f src/winctrls.u16.c
+			rm -f src/windialog.u16.c
 			rm -f src/winsearch.u16.c
 			rm -f src/wintext.u16.c
 

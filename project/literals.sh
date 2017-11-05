@@ -81,5 +81,7 @@ sed \
 		-e 's@W("/cygdrive")@U16_LITERAL_DEV_FS@g'                          \
 		-e 's/W("charnames\.txt")/U16_LITERAL_CHARNAMES_TXT/g'              \
 		-e 's/W("Static")/U16_LITERAL_STATIC/g'                             \
+		-e 's/W(APPNAME)/U16_LITERAL_APP_NAME/g'                            \
+		-e 's/W(DIALOG_CLASS)/U16_LITERAL_DIALOG_CLASS/g'                   \
 		-e 's/W("http:\/\/ciembor.github.io\/4bit\/")/U16_LITERAL_COLOR_SCHEME_DESIGNER/g' \
 	$1
