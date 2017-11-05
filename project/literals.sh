@@ -20,7 +20,7 @@ sed \
 		-e 's/W("-")/U16_LITERAL_DASH/g'                                    \
 		-e 's/W("\\\\\\\\?\\\\")/U16_LITERAL_DOS_BASE/g'                    \
 		-e 's/W("\\\\\\\\?\\\\UNC\\\\")/U16_LITERAL_UNC_BASE/g'             \
-		-e 's/W("〳〴〵⌠⌡⏐")/U16_LITERAL_INTEGRAL_FAKED/g'                  \
+		-e 's/W("〳〴〵⌠⌡⏐")/U16_LITERAL_INTEGRAL_FAKED/g'                     \
 		-e 's/W(".po")/U16_LITERAL_PO/g'                                    \
 		-e 's/W("=")/U16_LITERAL_EQUALS/g'                                  \
 		-e 's/W("@")/U16_LITERAL_AT/g'                                      \
@@ -84,4 +84,23 @@ sed \
 		-e 's/W(APPNAME)/U16_LITERAL_APP_NAME/g'                            \
 		-e 's/W(DIALOG_CLASS)/U16_LITERAL_DIALOG_CLASS/g'                   \
 		-e 's/W("http:\/\/ciembor.github.io\/4bit\/")/U16_LITERAL_COLOR_SCHEME_DESIGNER/g' \
+		                                                                    \
+		                                                                    \
+		                                                                    \
+		-e 's/W("⎷┌─⌠⌡│⎡⎣⎤⎦⎧⎩⎫⎭⎨⎬╶╶╲╱╴╴╳␦␦␦␦≤≠≥∫∴∝∞÷Δ∇ΦΓ∼≃Θ×Λ⇔⇒≡ΠΨ␦Σ␦␦√ΩΞΥ⊂⊃∩∪∧∨¬αβχδεφγηιθκλ␦ν∂πψρστ␦ƒωξυζ←↑→↓")/U16_LITERAL_MANY_SYMBOLS/g'      \
+		-e 's/W("¡¢£␦¥␦§¤©ª«␦␦␦␦°±²³␦µ¶·␦¹º»¼½␦¿ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏ␦ÑÒÓÔÕÖŒØÙÚÛÜŸ␦ßàáâãäåæçèéêëìíîï␦ñòóôõöœøùúûüÿ␦")/U16_LITERAL_CRYPTIC_QUESTION/g'  \
+		                                                                    \
+		                                                                    \
+		                                                                    \
+		-e 's/W("£¾ĳ½|^_`¨ƒ¼´")/U16_LITERAL_NRC_DUTCH/g'                    \
+		-e 's/W("#@ÄÖÅÜ_éäöåü")/U16_LITERAL_NRC_FINNISH/g'                  \
+		-e 's/W("£à°ç§^_`éùè¨")/U16_LITERAL_NRC_FRENCH/g'                   \
+		-e 's/W("#àâçêî_ôéùèû")/U16_LITERAL_NRC_FRENCH_CANADIAN/g'          \
+		-e 's/W("#§ÄÖÜ^_`äöüß")/U16_LITERAL_NRC_GERMAN/g'                   \
+		-e 's/W("£§°çé^_ùàòèì")/U16_LITERAL_NRC_ITALIAN/g'                  \
+		-e 's/W("#ÄÆØÅÜ_äæøåü")/U16_LITERAL_NRC_DANISH_NORWEGIAN/g'         \
+		-e 's/W("#@ÃÇÕ^_`ãçõ~")/U16_LITERAL_NRC_PORTUGUESE/g'               \
+		-e 's/W("£§¡Ñ¿^_`°ñç~")/U16_LITERAL_NRC_SPANISH/g'                  \
+		-e 's/W("#ÉÄÖÅÜ_éäöåü")/U16_LITERAL_NRC_SWEDISH/g'                  \
+		-e 's/W("ùàéçêîèôäöüû")/U16_LITERAL_NRC_SWISS/g'                    \
 	$1
