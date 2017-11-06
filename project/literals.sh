@@ -1,6 +1,11 @@
 #!/bin/sh
 
 sed \
+		-e 's/_W("Session switcher")/U16_LITERAL_SESSION_SWITCHER/g'        \
+		-e 's/_W("Session launcher")/U16_LITERAL_SESSION_LAUNCHER/g'        \
+		-e 's/_W("Ctrl+")/U16_LITERAL_CTRL_PLUS/g'                          \
+		-e 's/_W("Alt+")/U16_LITERAL_ALT_PLUS/g'                            \
+		-e 's/_W("Shift+")/U16_LITERAL_SHIFT_PLUS/g'                        \
 		-e 's/_W("◇ None (printing disabled) ◇")/U16_LITERAL_NO_PRINTER/g'  \
 		-e 's/_W("◇ None (system sound) ◇")/U16_LITERAL_NO_SOUND/g'         \
 		-e 's/_W("◇ None ◇")/U16_LITERAL_NONE2/g'                           \
@@ -14,7 +19,49 @@ sed \
 		-e 's/_W("▶")/U16_LITERAL_RIGHT_ARROW/g'                            \
 		-e 's/_W("◀")/U16_LITERAL_LEFT_ARROW/g'                             \
 		-e 's/_W("B\&asic colours:")/U16_LITERAL_BASIC_COLOURS/g'           \
-		-e 's/W("\\n")/U16_LITERAL_NEWLINE/g'                                \
+		-e 's/_W("Ne&w")/U16_LITERAL_NEW/g'                                 \
+		-e 's/_W("&Copy")/U16_LITERAL_COPY/g'                               \
+		-e 's/_W("&Restore")/U16_LITERAL_RESTORE/g'                         \
+		-e 's/_W("&Move")/U16_LITERAL_MOVE/g'                               \
+		-e 's/_W("&Size")/U16_LITERAL_SIZE/g'                               \
+		-e 's/_W("&Paste ")/U16_LITERAL_PASTE/g'                            \
+		-e 's/_W("Copy → Paste")/U16_LITERAL_COPY_PASTE/g'                  \
+		-e 's/_W("S&earch")/U16_LITERAL_SEARCH/g'                           \
+		-e 's/_W("&Log to File")/U16_LITERAL_LOG_TO_FILE/g'                 \
+		-e 's/_W("Character &Info")/U16_LITERAL_CHARACTER_INFO/g'           \
+		-e 's/_W("&Reset")/U16_LITERAL_RESET/g'                             \
+		-e 's/_W("&Default Size")/U16_LITERAL_DEFAULT_SIZE/g'               \
+		-e 's/_W("&Full Screen")/U16_LITERAL_FULL_SCREEN/g'                 \
+		-e 's/_W("Flip &Screen")/U16_LITERAL_FLIP_SCREEN/g'                 \
+		-e 's/_W("Copy &Title")/U16_LITERAL_COPY_TITLE/g'                   \
+		-e 's/_W("&Options...")/U16_LITERAL_OPTIONS/g'                      \
+		-e 's/_W("Ope&n")/U16_LITERAL_OPEN/g'                               \
+		-e 's/_W("Select &All")/U16_LITERAL_SELECT_ALL/g'                   \
+		-e 's/_W("Clear Scrollback")/U16_LITERAL_CLEAR_SCROLLBACK/g'        \
+		-e 's/W("Ctrl+")/U16_LITERAL_CTRL_PLUS/g'                           \
+		-e 's/W("Ctrl+Ins")/U16_LITERAL_CTRL_INS/g'                         \
+		-e 's/W("Ctrl+Shift+Ins")/U16_LITERAL_CTRL_SHIFT_INS/g'             \
+		-e 's/W("Ctrl+Shift+D")/U16_LITERAL_CTRL_SHIFT_D/g'                 \
+		-e 's/W("Ctrl+Shift+F")/U16_LITERAL_CTRL_SHIFT_F/g'                 \
+		-e 's/W("Ctrl+Shift+H")/U16_LITERAL_CTRL_SHIFT_H/g'                 \
+		-e 's/W("Ctrl+Shift+W")/U16_LITERAL_CTRL_SHIFT_W/g'                 \
+		-e 's/W("Ctrl+Shift+N")/U16_LITERAL_CTRL_SHIFT_N/g'                 \
+		-e 's/W("Ctrl+Shift+C")/U16_LITERAL_CTRL_SHIFT_C/g'                 \
+		-e 's/W("Ctrl+Shift+V")/U16_LITERAL_CTRL_SHIFT_V/g'                 \
+		-e 's/W("Ctrl+Shift+R")/U16_LITERAL_CTRL_SHIFT_R/g'                 \
+		-e 's/W("Ctrl+Shift+S")/U16_LITERAL_CTRL_SHIFT_S/g'                 \
+		-e 's/W("Alt+")/U16_LITERAL_ALT_PLUS/g'                             \
+		-e 's/W("Shift+")/U16_LITERAL_SHIFT_PLUS/g'                         \
+		-e 's/W("Shift+Ins")/U16_LITERAL_SHIFT_INS/g'                       \
+		-e 's/W("Alt+F4")/U16_LITERAL_ALT_F4/g'                             \
+		-e 's/W("Alt+F3")/U16_LITERAL_ALT_F3/g'                             \
+		-e 's/W("Alt+F2")/U16_LITERAL_ALT_F2/g'                             \
+		-e 's/W("Alt+F8")/U16_LITERAL_ALT_F8/g'                             \
+		-e 's/W("Alt+F10")/U16_LITERAL_ALT_F10/g'                           \
+		-e 's/W("Alt+F11")/U16_LITERAL_ALT_F11/g'                           \
+		-e 's/W("Alt+F12")/U16_LITERAL_ALT_F12/g'                           \
+		-e 's/W("\\t")/U16_LITERAL_T/g'                                     \
+		-e 's/W("\\n")/U16_LITERAL_NEWLINE/g'                               \
 		-e 's/W("BUTTON")/U16_LITERAL_BUTTON/g'                             \
 		-e 's/W("")/U16_LITERAL_NULL_STRING/g'                              \
 		-e 's/W(" ")/U16_LITERAL_EMPTY_STRING/g'                            \
