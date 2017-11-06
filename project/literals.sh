@@ -38,6 +38,8 @@ sed \
 		-e 's/_W("Ope&n")/U16_LITERAL_OPEN/g'                               \
 		-e 's/_W("Select &All")/U16_LITERAL_SELECT_ALL/g'                   \
 		-e 's/_W("Clear Scrollback")/U16_LITERAL_CLEAR_SCROLLBACK/g'        \
+		-e 's/_W("Processes are running in session:")/U16_LITERAL_MSG_PRE/g'      \
+		-e 's/_W("Close anyway?")/U16_LITERAL_MSG_POST/g'                   \
 		-e 's/W("Ctrl+")/U16_LITERAL_CTRL_PLUS/g'                           \
 		-e 's/W("Ctrl+Ins")/U16_LITERAL_CTRL_INS/g'                         \
 		-e 's/W("Ctrl+Shift+Ins")/U16_LITERAL_CTRL_SHIFT_INS/g'             \
@@ -61,7 +63,8 @@ sed \
 		-e 's/W("Alt+F11")/U16_LITERAL_ALT_F11/g'                           \
 		-e 's/W("Alt+F12")/U16_LITERAL_ALT_F12/g'                           \
 		-e 's/W("\\t")/U16_LITERAL_T/g'                                     \
-		-e 's/W("\\n")/U16_LITERAL_NEWLINE/g'                               \
+		-e 's/\[\] = W("\\n")/[] = U16_LITERAL_NEWLINE_VAR/g'               \
+		-e 's/W("\\n")/U16_LITERAL_NEWLINE_CONST/g'                         \
 		-e 's/W("BUTTON")/U16_LITERAL_BUTTON/g'                             \
 		-e 's/W("")/U16_LITERAL_NULL_STRING/g'                              \
 		-e 's/W(" ")/U16_LITERAL_EMPTY_STRING/g'                            \
@@ -124,16 +127,30 @@ sed \
 		-e 's/W("mnt")/U16_LITERAL_MNT/g'                                   \
 		-e 's/W("www\.")/U16_LITERAL_WWW/g'                                 \
 		-e 's/W("root")/U16_LITERAL_ROOT/g'                                 \
-		-e 's@W("/mnt/")@U16_LITERAL_MNT_FS@g'                              \
-		-e 's@W("/rootfs")@U16_LITERAL_ROOTFS@g'                            \
-		-e 's@W("/lxss")@U16_LITERAL_LXSS@g'                                \
-		-e 's@W("/cygdrive")@U16_LITERAL_DEV_FS@g'                          \
+		-e 's@W("\/mnt/")@U16_LITERAL_MNT_FS@g'                             \
+		-e 's@W("\/rootfs")@U16_LITERAL_ROOTFS@g'                           \
+		-e 's@W("\/lxss")@U16_LITERAL_LXSS@g'                               \
+		-e 's@W("\/cygdrive")@U16_LITERAL_DEV_FS@g'                         \
 		-e 's/W("charnames\.txt")/U16_LITERAL_CHARNAMES_TXT/g'              \
 		-e 's/W("Static")/U16_LITERAL_STATIC/g'                             \
 		-e 's/W(APPNAME)/U16_LITERAL_APP_NAME/g'                            \
 		-e 's/W(DIALOG_CLASS)/U16_LITERAL_DIALOG_CLASS/g'                   \
 		-e 's/W("http:\/\/ciembor.github.io\/4bit\/")/U16_LITERAL_COLOR_SCHEME_DESIGNER/g' \
-		                                                                    \
+		-e 's/W(".wav")/U16_LITERAL_WAV/g'                                  \
+		-e 's/W("sounds")/U16_LITERAL_SOUNDS2/g'                            \
+		-e 's/W("DistributionName")/U16_LITERAL_DISTRIBUTION_NAME/g'        \
+		-e 's/W("BasePath")/U16_LITERAL_BASEPATH/g'                         \
+		-e 's/W("PackageFamilyName")/U16_LITERAL_PACKAGE_FAMILY_NAME/g'     \
+		-e 's/W("PackageFullName")/U16_LITERAL_PACKAGE_FULL_NAME/g'         \
+		-e 's/W("Schemas")/U16_LITERAL_SCHEMAS/g'                           \
+		-e 's/W("DefaultDistribution")/U16_LITERAL_DEFAULT_DISTRIBUTION/g'  \
+		-e 's/W("\\\\lxss\\\\bash.ico")/U16_LITERAL_LXSS_BASH_ICO/g'        \
+		-e 's/W("\\\\rootfs")/U16_LITERAL_LXSS_ROOTFS/g'                    \
+		-e 's/W("SOFTWARE\\\\Microsoft\\\\Windows\\\\CurrentVersion\\\\Lxss")/U16_LITERAL_LXSS_REGISTRY/g' \
+		-e 's/W("Software\\\\Classes\\\\Local Settings\\\\Software\\\\Microsoft\\\\Windows\\\\CurrentVersion\\\\AppModel\\\\SystemAppData")/U16_LITERAL_APPMODEL_REGISTRY/g' \
+		-e 's/W("\\\\WindowsApps\\\\")/U16_LITERAL_WINDOWS_APPS/g'          \
+		-e 's/W("\\\\images\\\\icon.ico")/U16_LITERAL_IMAGES_ICON/g'        \
+		-e 's/W("\\\\lxss")/U16_LITERAL_LXSS_ROOT/g'                          \
 		                                                                    \
 		                                                                    \
 		-e 's/W("⎷┌─⌠⌡│⎡⎣⎤⎦⎧⎩⎫⎭⎨⎬╶╶╲╱╴╴╳␦␦␦␦≤≠≥∫∴∝∞÷Δ∇ΦΓ∼≃Θ×Λ⇔⇒≡ΠΨ␦Σ␦␦√ΩΞΥ⊂⊃∩∪∧∨¬αβχδεφγηιθκλ␦ν∂πψρστ␦ƒωξυζ←↑→↓")/U16_LITERAL_MANY_SYMBOLS/g'      \
