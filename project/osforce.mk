@@ -95,6 +95,15 @@ src/wininput.o:		src/wininput.u16.c $(ALL_HEADERS) host.tag tree.tag
 src/wininput.u16.c:	$(SOURCE_DIR)/src/wininput.c $(ALL_HEADERS) host.tag tree.tag
 			$(PROJECT_DIR)/project/literals.sh $< > $@
 
+src/winmain.lo:		src/winmain.u16.c $(ALL_HEADERS) host.tag tree.tag
+			$(CC) -c -o $@ $< $(CFLAGS_SHARED)
+
+src/winmain.o:		src/winmain.u16.c $(ALL_HEADERS) host.tag tree.tag
+			$(CC) -c -o $@ $< $(CFLAGS_STATIC)
+
+src/winmain.u16.c:	$(SOURCE_DIR)/src/winmain.c $(ALL_HEADERS) host.tag tree.tag
+			$(PROJECT_DIR)/project/literals.sh $< > $@
+
 src/winsearch.lo:	src/winsearch.u16.c $(ALL_HEADERS) host.tag tree.tag
 			$(CC) -c -o $@ $< $(CFLAGS_SHARED)
 
@@ -129,6 +138,7 @@ clean-gen:
 			rm -f src/winclip.u16.c
 			rm -f src/windialog.u16.c
 			rm -f src/wininput.u16.c
+			rm -f src/winmain.u16.c
 			rm -f src/winsearch.u16.c
 			rm -f src/wintext.u16.c
 
