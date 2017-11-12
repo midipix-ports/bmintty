@@ -1,5 +1,7 @@
 ifeq ($(OS),midipix)
 
+LDFLAGS_COMMON      += -lu16ports
+
 build/sys/cygwin.h:	tree.tag
 			touch build/sys/cygwin.h
 
