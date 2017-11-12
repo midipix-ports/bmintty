@@ -7,6 +7,17 @@ build/sys/cygwin.h:	tree.tag
 
 host.tag:		tree.tag build/sys/cygwin.h
 
+
+FRAMEWORK_SRCS      += \
+	src/framework.c \
+
+src/framework.lo:	$(SOURCE_DIR)/src/host/midipix/framework.c $(ALL_HEADERS) host.tag tree.tag
+			$(CC) -c -o $@ $< $(CFLAGS_SHARED)
+
+src/framework.o:	$(SOURCE_DIR)/src/host/midipix/framework.c $(ALL_HEADERS) host.tag tree.tag
+			$(CC) -c -o $@ $< $(CFLAGS_STATIC)
+
+
 src/child.lo:		src/child.u16.c $(ALL_HEADERS) host.tag tree.tag
 			$(CC) -c -o $@ $< $(CFLAGS_SHARED)
 
