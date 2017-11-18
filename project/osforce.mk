@@ -1,6 +1,14 @@
 ifeq ($(OS),midipix)
 
+CFLAGS_CONFIG       += --include=$(SOURCE_DIR)/src/host/midipix/std.h
+
+CFLAGS_COMMON       += -Wno-error=missing-field-initializers
+CFLAGS_COMMON       += -DHAS_LOCALES -DARGZ_INTERNAL_IMPL
+CFLAGS_COMMON       += -I$(SOURCE_DIR)/src/host/midipix
+CFLAGS_COMMON       += -isystem=/include/w32api.ports
+
 LDFLAGS_COMMON      += -lu16ports
+LDFLAGS_COMMON      += -L$(SYSROOT)/lib/w32lib
 
 build/sys/cygwin.h:	tree.tag
 			touch build/sys/cygwin.h
