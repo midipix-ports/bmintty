@@ -4,6 +4,7 @@ CFLAGS_APP_ATTR		+= -DMINTTY_APP
 
 LDFLAGS_COMMON		+= -L$(SYSROOT)/usr/lib/w32api
 LDFLAGS_COMMON		+= -mwindows -lcomctl32 -limm32 -lwinmm -lwinspool -lole32 -luuid -lusp10
+LDFLAGS_COMMON		+=           -lkernel32 -luser32 -lgdi32 -lcomdlg32 -lshell32 -ladvapi32
 
 RES_LOBJS		+= $(RES_SRCS:.rc=.lo)
 RES_OBJS		+= $(RES_SRCS:.rc=.o)
