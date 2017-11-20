@@ -3,7 +3,7 @@ CFLAGS_STATIC_ATTR	+= -DMINTTY_STATIC
 CFLAGS_APP_ATTR		+= -DMINTTY_APP
 
 LDFLAGS_COMMON		+= -L$(SYSROOT)/usr/lib/w32api
-LDFLAGS_COMMON		+= -mwindows           -lcomctl32 -limm32 -lwinmm -lwinspool -lole32
+LDFLAGS_COMMON		+= -mwindows  -lw32lib -lcomctl32 -limm32 -lwinmm -lwinspool -lole32
 LDFLAGS_COMMON		+= -lkernel32 -luser32 -lgdi32 -lcomdlg32 -lshell32 -ladvapi32 -lusp10
 
 RES_LOBJS		+= $(RES_SRCS:.rc=.lo)
