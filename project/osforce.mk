@@ -1,6 +1,7 @@
 ifeq ($(OS),midipix)
 
 CFLAGS_CONFIG       += --include=$(SOURCE_DIR)/src/host/midipix/std.h
+CFLAGS_CONFIG       += -DTARGET=$(CCHOST)
 
 CFLAGS_COMMON       += -Wno-error=missing-field-initializers
 CFLAGS_COMMON       += -DHAS_LOCALES -DARGZ_INTERNAL_IMPL
