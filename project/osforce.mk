@@ -9,6 +9,7 @@ CFLAGS_COMMON       += -isystem=/include/w32api.ports
 
 LDFLAGS_COMMON      += -lu16ports
 LDFLAGS_COMMON      += -L$(SYSROOT)/lib/w32lib
+LDFLAGS_COMMON      += -mposix
 
 build/sys/cygwin.h:	tree.tag
 			touch build/sys/cygwin.h
