@@ -11,10 +11,7 @@ LDFLAGS_COMMON      += -lu16ports
 LDFLAGS_COMMON      += -L$(SYSROOT)/lib/w32lib
 LDFLAGS_COMMON      += -mposix
 
-build/sys/cygwin.h:	tree.tag
-			touch build/sys/cygwin.h
-
-host.tag:		tree.tag build/sys/cygwin.h
+host.tag:		tree.tag
 
 
 FRAMEWORK_SRCS      += \
@@ -144,10 +141,7 @@ src/wintext.o:		src/wintext.u16.c $(ALL_HEADERS) host.tag tree.tag
 src/wintext.u16.c:	$(SOURCE_DIR)/src/wintext.c $(ALL_HEADERS) host.tag tree.tag
 			$(PROJECT_DIR)/project/literals.sh $< > $@
 
-clean:			clean-gen clean-host
-
-clean-host:
-			rm -f build/sys/cygwin.h
+clean:			clean-gen
 
 clean-gen:
 			rm -f src/child.u16.c
