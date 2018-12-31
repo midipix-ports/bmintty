@@ -13,10 +13,10 @@ APP_OBJS		+= $(RES_OBJS)
 COMMON_LOBJS		+= $(RES_LOBJS)
 
 src/res.lo:		$(SOURCE_DIR)/src/res.rc $(ALL_HEADERS) host.tag tree.tag
-			$(RC) -o $@ -c 65001 --preprocessor '$(CC) -E -xc -DRC_INVOKED $(CFLAGS)' $<
+			$(WINDRC) -o $@ -c 65001 --preprocessor '$(CC) -E -xc -DRC_INVOKED $(CFLAGS)' $<
 
 src/res.o:		$(SOURCE_DIR)/src/res.rc $(ALL_HEADERS) host.tag tree.tag
-			$(RC) -o $@ -c 65001 --preprocessor '$(CC) -E -xc -DRC_INVOKED $(CFLAGS)' $<
+			$(WINDRC) -o $@ -c 65001 --preprocessor '$(CC) -E -xc -DRC_INVOKED $(CFLAGS)' $<
 
 progress:		src/base64.o  src/minibidi.o  src/sixel_hls.o  src/termline.o
 progress:		src/std.o     src/mcwidth.o   src/sixel.o      src/res.o
