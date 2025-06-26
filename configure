@@ -191,6 +191,16 @@ init_vars()
 		mb_makefile='Makefile'
 	fi
 
+	# unit tests
+	if [ -z "${TESTCFGDIR}" ]; then
+		TESTCFGDIR="${mb_testcfgdir:+$mb_project_dir/$mb_testcfgdir}"
+	fi
+
+	if [ -z "${TESTDATADIR}" ]; then
+		TESTDATADIR="${mb_testdatadir:-input}"
+		TESTDATADIR="${TESTCFGDIR:+${TESTCFGDIR}/${TESTDATADIR}}"
+	fi
+
 	# pkgconf (host)
 	if [ -z "${PKGCONF}" ]; then
 		PKGCONF="$mb_pkgconf"
@@ -266,6 +276,10 @@ init_vars()
 	mb_dvidir=$DVIDIR
 	mb_pdfdir=$PDFDIR
 	mb_psdir=$PSDIR
+
+	# unit tests
+	mb_testcfgdir=$TESTCFGDIR
+	mb_testdatadir=$TESTDATADIR
 
 	# make
 	mb_make=$MAKE
@@ -612,6 +626,10 @@ common_defaults()
 	[ -n "$mb_dvidir" ] 		|| mb_dvidir=$mb_docdir
 	[ -n "$mb_pdfdir" ] 		|| mb_pdfdir=$mb_docdir
 	[ -n "$mb_psdir" ] 		|| mb_psdir=$mb_docdir
+
+	# unit tests
+	[ -n "$mb_testcfgdir" ] 	|| mb_testcfgdir=
+	[ -n "$mb_testdatadir" ] 	|| mb_testcfgdir=${mb_testcfgdir:+${mb_testcfgdir}/input}
 
 	# switches
 	[ -n "$mb_cflags_debug" ]	|| mb_cflags_debug=$mb_default_cflags_debug
@@ -1154,6 +1172,15 @@ for arg ; do
 			;;
 		--psdir=*)
 			mb_psdir=${arg#*=}
+			;;
+
+		# unit tests
+		--testcfgdir=*)
+			mb_testcfgdir=${arg#*=}
+			;;
+
+		--testdatadir=*)
+			mb_testdatadir=${arg#*=}
 			;;
 
 		#make

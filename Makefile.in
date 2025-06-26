@@ -79,6 +79,9 @@ DVIDIR			= @dvidir@
 PDFDIR			= @pdfdir@
 PSDIR			= @psdir@
 
+TESTCFGDIR		= @testcfgdir@
+TESTDATADIR		= @testdatadir@
+
 CFLAGS_COMMON 		+= @cflags_common@
 CFLAGS_DEBUG 		+= @cflags_debug@
 CFLAGS_CMDLINE 		+= @cflags_cmdline@
