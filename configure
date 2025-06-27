@@ -136,6 +136,7 @@ init_vars()
 	sfrt_flag_vars=$sfrt_config_dir/flag.vars
 	sfrt_opt_vars=$sfrt_config_dir/opt.vars
 	sfrt_cfgdefs_in=$sfrt_config_dir/cfgdefs.in
+	sfrt_testcfg_in=$sfrt_config_dir/testcfg.in
 
 	mb_make_vars=$(< "$sfrt_config_vars" \
 		grep -v -e '^#' -e '^$' | tr '[:lower:]' '[:upper:]')
@@ -199,6 +200,10 @@ init_vars()
 	if [ -z "${TESTDATADIR}" ]; then
 		TESTDATADIR="${mb_testdatadir:-input}"
 		TESTDATADIR="${TESTCFGDIR:+${TESTCFGDIR}/${TESTDATADIR}}"
+	fi
+
+	if [ -z "${TESTFLAGS}" ]; then
+		TESTFLAGS='--run-all'
 	fi
 
 	# pkgconf (host)
@@ -549,6 +554,14 @@ common_defaults()
 		if [ -f $mb_project_dir/project/cfgdefs.in ]; then
 			cat $mb_project_dir/project/cfgdefs.in >> cfgdefs.mk
 		fi
+	fi
+
+	# unit tests
+	if [ -d "$mb_testcfgdir" ]; then
+		printf '%s\n' 'include $(TESTCFGDIR)/project/testcfg.mk'  > testcfg.mk
+		printf '%-24s%s\n' "TESTFLAGS" "= ${TESTFLAGS}"          >> testcfg.mk
+	else
+		cat $sfrt_testcfg_in >> testcfg.mk
 	fi
 
 	# user build-time overrides

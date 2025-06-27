@@ -179,6 +179,8 @@ include $(PROJECT_DIR)/project/arch.mk
 include $(PROJECT_DIR)/project/extras.mk
 include $(PROJECT_DIR)/project/overrides.mk
 
+include ./testcfg.mk
+
 
 all:		package-shared package-static app
 
