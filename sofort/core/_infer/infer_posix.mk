@@ -13,8 +13,7 @@
 $(SHARED_LIB):
 		$(SHARED_LIB_CMD) $@ $(SHARED_OBJS) $(SHARED_LIB_LDFLAGS) $(LDFLAGS_IMPLIB)
 
-$(STATIC_LIB):
-		mkdir -p lib
+$(STATIC_LIB):	dirs.tag
 		rm -f $@
 		$(AR) rcs $@ $(STATIC_OBJS)
 
