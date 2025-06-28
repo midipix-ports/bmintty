@@ -13,10 +13,9 @@ src/%.o: 	$(SOURCE_DIR)/src/%.c
 $(SHARED_LIB):
 		$(SHARED_LIB_CMD) $@ $^ $(SHARED_LIB_LDFLAGS) $(LDFLAGS_IMPLIB)
 
-lib/%$(OS_ARCHIVE_EXT):
-		mkdir -p lib
+$(STATIC_LIB):	dirs.tag
 		rm -f $@
-		$(AR) rcs $@ $^
+		$(AR) rcs $@ $(STATIC_OBJS)
 
 srcs.tag:
 		touch $@
