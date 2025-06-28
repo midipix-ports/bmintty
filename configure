@@ -559,7 +559,7 @@ common_defaults()
 	# unit tests
 	if [ -d "$mb_testcfgdir" ]; then
 		printf '%s\n' 'include $(TESTCFGDIR)/project/testcfg.mk'  > testcfg.mk
-		printf '%-24s%s\n' "TESTFLAGS" "= ${TESTFLAGS}"          >> testcfg.mk
+		printf '%-24s%s\n' "TESTFLAGS"   "= ${TESTFLAGS}"        >> testcfg.mk
 		printf '%-24s%s\n' "TESTCFLAGS"  '= $(CFLAGS)'           >> testcfg.mk
 		printf '%-24s%s\n' "TESTLDFLAGS" '= $(LDFLAGS_SHARED)'   >> testcfg.mk
 	else
