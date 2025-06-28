@@ -274,6 +274,7 @@ init_vars()
 	mb_localstatedir=$LOCALSTATEDIR
 	mb_runstatedir=$RUNSTATEDIR
 	mb_datarootdir=$DATAROOTDIR
+	mb_pkgdatadir=$PKGDATADIR
 	mb_datadir=$DATADIR
 	mb_infodir=$INFODIR
 	mb_localedir=$LOCALEDIR
@@ -634,6 +635,7 @@ common_defaults()
 	[ -n "$mb_localstatedir" ] 	|| mb_localstatedir=$mb_prefix/var
 	[ -n "$mb_runstatedir" ] 	|| mb_runstatedir=$mb_localstatedir/run
 	[ -n "$mb_datarootdir" ] 	|| mb_datarootdir=$mb_prefix/share
+	[ -n "$mb_pkgdatadir" ] 	|| mb_pkgdatadir=$mb_prefix/share/'$(PACKAGE)'
 	[ -n "$mb_datadir" ] 		|| mb_datadir=$mb_datarootdir
 	[ -n "$mb_infodir" ] 		|| mb_infodir=$mb_datarootdir/info
 	[ -n "$mb_localedir" ] 		|| mb_localedir=$mb_datarootdir/locale
@@ -1169,6 +1171,9 @@ for arg ; do
 			;;
 		--datadir=*)
 			mb_datadir=${arg#*=}
+			;;
+		--pkgdatadir=*)
+			mb_pkgdatadir=${arg#*=}
 			;;
 		--infodir=*)
 			mb_infodir=${arg#*=}

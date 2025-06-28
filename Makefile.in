@@ -71,6 +71,7 @@ SHAREDSTATEDIR		= @sharedstatedir@
 LOCALSTATEDIR		= @localstatedir@
 RUNSTATEDIR		= @runstatedir@
 DATAROOTDIR		= @datarootdir@
+PKGDATADIR		= @pkgdatadir@
 DATADIR			= @datadir@
 INFODIR			= @infodir@
 LOCALEDIR		= @localedir@
