@@ -564,7 +564,7 @@ common_defaults()
 		printf '%-24s%s\n' "TESTCFLAGS"  '= $(CFLAGS)'           >> testcfg.mk
 		printf '%-24s%s\n' "TESTLDFLAGS" '= $(LDFLAGS_SHARED)'   >> testcfg.mk
 	else
-		cat $sfrt_testcfg_in >> testcfg.mk
+		cat $sfrt_testcfg_in > testcfg.mk
 	fi
 
 	# user build-time overrides
