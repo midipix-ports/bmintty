@@ -17,6 +17,9 @@
 # mb_cfgtest_headers: headers for ad-hoc inclusion with the current test
 # mb_cfgtest_attr:    if supported, the compiler-specific attribute definition
 
+# special values:
+# mb_cfgtest_makevar: when set to '@' (or not set), results of the current
+#                       test shall not be appended to cfgdefs.mk.
 
 cfgtest_newline()
 {
@@ -202,8 +205,10 @@ cfgtest_makevar_append()
 		fi
 	done
 
-	printf '%-24s%s\n' "$mb_cfgtest_makevar" "$mb_internal_str" \
-		>> $mb_pwd/cfgdefs.mk
+	if [ "${mb_cfgtest_makevar:-@}" != '@' ]; then
+		printf '%-24s%s\n' "$mb_cfgtest_makevar" "$mb_internal_str" \
+			>> $mb_pwd/cfgdefs.mk
+	fi
 
 	unset cfgtest_internal_unit_test
 }
