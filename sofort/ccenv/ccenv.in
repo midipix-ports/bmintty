@@ -90,6 +90,15 @@ CFLAGS_ATTR_VISIBILITY_HIDDEN           = -D_ATTR_VISIBILITY_HIDDEN=@ccenv_attr_
 CFLAGS_ATTR_VISIBILITY_INTERNAL         = -D_ATTR_VISIBILITY_INTERNAL=@ccenv_attr_visibility_internal@
 CFLAGS_ATTR_VISIBILITY_PROTECTED        = -D_ATTR_VISIBILITY_PROTECTED=@ccenv_attr_visibility_protected@
 
+# #ccenv_cfgtype@ compiler attributes
+CFLAGS_ATTR_NONNULL                     = -D_ATTR_NONNULL\(x\)=@ccenv_attr_nonnull@
+CFLAGS_ATTR_FORMAT                      = -D_ATTR_FORMAT\(a,s,c\)=@ccenv_attr_format@
+CFLAGS_ATTR_MALLOC                      = -D_ATTR_MALLOC=@ccenv_attr_malloc@
+CFLAGS_ATTR_NORETURN                    = -D_ATTR_NORETURN=@ccenv_attr_noreturn@
+CFLAGS_ATTR_DEPRECATED                  = -D_ATTR_DEPRECATED=@ccenv_attr_deprecated@
+CFLAGS_ATTR_UNUSED                      = -D_ATTR_UNUSED=@ccenv_attr_unused@
+CFLAGS_ATTR_ALWAYS_INLINE               = -D_ATTR_ALWAYS_INLINE=@ccenv_attr_always_inline@
+
 # @ccenv_cfgtype@ cflags
 CFLAGS_OS                              += -DOS_LIB_SUFFIX=\"@ccenv_os_lib_suffix@\"
 CFLAGS_OS                              += @ccenv_cflags_os@

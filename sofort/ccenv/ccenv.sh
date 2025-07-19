@@ -1696,6 +1696,37 @@ ccenv_set_cc_linker_switch_vars()
 	done
 }
 
+ccenv_set_cc_attr_vars()
+{
+	if cfgtest_attr_presence 'nonnull'; then
+		ccenv_attr_nonnull="$mb_cfgtest_attr"
+	fi
+
+	if cfgtest_attr_presence 'format'; then
+		ccenv_attr_format="$mb_cfgtest_attr"
+	fi
+
+	if cfgtest_attr_presence 'malloc'; then
+		ccenv_attr_malloc="$mb_cfgtest_attr"
+	fi
+
+	if cfgtest_attr_presence 'noreturn'; then
+		ccenv_attr_noreturn="$mb_cfgtest_attr"
+	fi
+
+	if cfgtest_attr_presence 'deprecated'; then
+		ccenv_attr_deprecated="$mb_cfgtest_attr"
+	fi
+
+	if cfgtest_attr_presence 'unused'; then
+		ccenv_attr_unused="$mb_cfgtest_attr"
+	fi
+
+	if cfgtest_attr_presence 'always_inline'; then
+		ccenv_attr_always_inline="$mb_cfgtest_attr"
+	fi
+}
+
 ccenv_set_cc_attr_visibility_vars()
 {
 	if cfgtest_attr_visibility 'default'; then
@@ -1823,6 +1854,7 @@ ccenv_set_toolchain_variables()
 	ccenv_set_os_pe_switches
 	ccenv_set_os_gate_switches
 	ccenv_set_os_bsd_switches
+	ccenv_set_cc_attr_vars
 	ccenv_set_cc_attr_visibility_vars
 
 	ccenv_output_defs
