@@ -1698,6 +1698,10 @@ ccenv_set_cc_linker_switch_vars()
 
 ccenv_set_cc_attr_vars()
 {
+	if cfgtest_attr_presence 'visibility'; then
+		ccenv_attr_visibility="$mb_cfgtest_attr"
+	fi
+
 	if cfgtest_attr_presence 'nonnull'; then
 		ccenv_attr_nonnull="$mb_cfgtest_attr"
 	fi

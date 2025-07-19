@@ -91,6 +91,7 @@ CFLAGS_ATTR_VISIBILITY_INTERNAL         = -D_ATTR_VISIBILITY_INTERNAL=@ccenv_att
 CFLAGS_ATTR_VISIBILITY_PROTECTED        = -D_ATTR_VISIBILITY_PROTECTED=@ccenv_attr_visibility_protected@
 
 # #ccenv_cfgtype@ compiler attributes
+CFLAGS_ATTR_VISIBILITY                  = -D_ATTR_VISIBILITY\(v\)=@ccenv_attr_visibility@
 CFLAGS_ATTR_NONNULL                     = -D_ATTR_NONNULL\(x\)=@ccenv_attr_nonnull@
 CFLAGS_ATTR_FORMAT                      = -D_ATTR_FORMAT\(a,s,c\)=@ccenv_attr_format@
 CFLAGS_ATTR_MALLOC                      = -D_ATTR_MALLOC=@ccenv_attr_malloc@
