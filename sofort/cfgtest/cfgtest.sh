@@ -136,9 +136,9 @@ cfgtest_epilog()
 	fi
 
 	if [ "${1}" = 'attr' ] && [ "${2}" = '(error)' ]; then
-		printf '\n\ncfgtest: the %s compiler %s %s_ attribute.\n' \
-			"$mb_cfgtest_cfgtype"                            \
-			'does not appear to support the _'              \
+		printf '\n\ncfgtest: the %s compiler %s _%s_ attribute.\n' \
+			"$mb_cfgtest_cfgtype"                             \
+			'does not appear to support the'                 \
 			"${3}" >&3
 		printf '%s\n' '------------------------' >&3
 		return 1
