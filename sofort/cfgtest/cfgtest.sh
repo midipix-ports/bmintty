@@ -597,6 +597,12 @@ cfgtest_attr_presence()
 	cfgtest_prolog 'compiler attribute:' "${1}"
 
 	case "${cfgtest_attr}" in
+		visibility)
+			cfgtest_attr_syntax='__attribute__((__visibility__("hidden")))'
+			cfgtest_code_snippet="int f_${cfgtest_attr}(int, long, char *, ...) ${cfgtest_attr_syntax};"
+			mb_cfgtest_attr='__attribute__\(\(__visibility__\(v\)\)\)'
+			;;
+
 		nonnull)
 			cfgtest_attr_syntax='__attribute__((__nonnull__(3)))'
 			cfgtest_code_snippet="int f_${cfgtest_attr}(int, long, char *, ...) ${cfgtest_attr_syntax};"
