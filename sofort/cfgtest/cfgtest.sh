@@ -594,6 +594,58 @@ cfgtest_attr_visibility()
 }
 
 
+cfgtest_attr_presence()
+{
+	# init
+	cfgtest_attr="${1}"
+	cfgtest_prolog 'compiler attribute:' "${1}"
+
+	case "${cfgtest_attr}" in
+		nonnull)
+			cfgtest_attr_syntax='__attribute__((__nonnull__(3)))'
+			cfgtest_code_snippet="int f_${cfgtest_attr}(int, long, char *, ...) ${cfgtest_attr_syntax};"
+			mb_cfgtest_attr='__attribute__\(\(__nonnull__\(x\)\)\)'
+			;;
+
+		format)
+			cfgtest_attr_syntax='__attribute__((__format__(__printf__, 3, 4)))'
+			cfgtest_code_snippet="int f_snprintf(char *, unsigned long, const char *, ...) ${cfgtest_attr_syntax};"
+			mb_cfgtest_attr='__attribute__\(\(__format__\(a,s,c\)\)\)'
+			;;
+
+		malloc)
+			cfgtest_attr_syntax='__attribute__((__malloc__))'
+			cfgtest_code_snippet="void * f_malloc(unsigned long) ${cfgtest_attr_syntax};"
+			mb_cfgtest_attr='__attribute__\(\(__malloc__\)\)'
+			;;
+
+		*)
+			cfgtest_attr_syntax="__attribute__((__${cfgtest_attr}__))"
+			cfgtest_code_snippet="int f_${cfgtest_attr}(int, ...) ${cfgtest_attr_syntax};"
+			mb_cfgtest_attr='__attribute__\(\(__nonnull__\(x\)\)\)'
+			mb_cfgtest_attr=$(printf '__attribute__\\(\\(__%s__\\)\\)' "${cfgtest_attr}")
+			;;
+	esac
+
+	cfgtest_common_init 'attr'
+
+	# execute
+	printf '%s\n' "$cfgtest_src"                      \
+		| eval $(printf '%s' "$cfgtest_cmd")       \
+		> /dev/null 2>&3                            \
+	|| cfgtest_epilog 'attr' '(error)' "${cfgtest_attr}" \
+	|| return
+
+	# result
+	printf 'cfgtest: %s compiler: above attribute is supported; see also ccenv/%s.mk.\n\n' \
+		"$mb_cfgtest_cfgtype" "$mb_cfgtest_cfgtype" >&3
+
+	cfgtest_epilog 'attr' '(ok)'
+
+	return 0
+}
+
+
 cfgtest_code_snippet_asm()
 {
 	# init
