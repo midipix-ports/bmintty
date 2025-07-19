@@ -572,8 +572,6 @@ cfgtest_attr_visibility()
 	cfgtest_common_init 'attr'
 
 	# execute
-	cfgtest_ret=1
-
 	printf '%s\n' "$cfgtest_src"                \
 		| eval $(printf '%s' "$cfgtest_cmd") \
 		> /dev/null 2>&3                      \
@@ -582,8 +580,6 @@ cfgtest_attr_visibility()
 
 	# result
 	mb_cfgtest_attr=$(printf '__attribute__\\(\\(__visibility__\\(\\"%s\\"\\)\\)\\)' "${1}")
-
-	cfgtest_ret=0
 
 	printf 'cfgtest: %s compiler: above attribute is supported; see also ccenv/%s.mk.\n\n' \
 		"$mb_cfgtest_cfgtype" "$mb_cfgtest_cfgtype" >&3
@@ -656,8 +652,6 @@ cfgtest_code_snippet_asm()
 	cfgtest_common_init 'asm'
 
 	# execute
-	cfgtest_ret=1
-
 	printf '%s\n' "$cfgtest_src"                \
 		| eval $(printf '%s' "$cfgtest_cmd") \
 		> /dev/null 2>&3                      \
@@ -665,8 +659,6 @@ cfgtest_code_snippet_asm()
 	|| return
 
 	# result
-	cfgtest_ret=0
-
 	printf 'cfgtest: %s compiler: above code snippet compiled successfully.\n\n' \
 		"$mb_cfgtest_cfgtype" >&3
 
@@ -689,8 +681,6 @@ cfgtest_macro_definition()
 	cfgtest_common_init 'macro'
 
 	# execute
-	cfgtest_ret=1
-
 	printf '%s\n' "$cfgtest_src"                \
 		| eval $(printf '%s' "$cfgtest_cmd") \
 		> /dev/null 2>&3                      \
@@ -698,8 +688,6 @@ cfgtest_macro_definition()
 	|| return
 
 	# result
-	cfgtest_ret=0
-
 	printf 'cfgtest: %s compiler: above macro definition test compiled successfully.\n\n' \
 		"$mb_cfgtest_cfgtype" >&3
 
