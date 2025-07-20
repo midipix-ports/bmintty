@@ -24,6 +24,7 @@
 /* ./sofort/config/config.vars                                               */
 /* ./sofort/config/flag.vars                                                 */
 /* ./sofort/config/opt.vars                                                  */
+/* ./sofort/config/testcfg.in                                                */
 /* ./sofort/core/_flavor/flavor_app_frontend_disabled.mk                     */
 /* ./sofort/core/_flavor/flavor_app_frontend_enabled.mk                      */
 /* ./sofort/core/_flavor/flavor_app_linking_all_shared.mk                    */
