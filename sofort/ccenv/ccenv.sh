@@ -1140,6 +1140,12 @@ ccenv_set_os()
 			;;
 	esac
 
+	case "$ccenv_os" in
+		*-linux | linux-* )
+			ccenv_os='linux'
+			;;
+	esac
+
 	if [ -z "$ccenv_os" ]; then
 		ccenv_os='anyos'
 	fi
