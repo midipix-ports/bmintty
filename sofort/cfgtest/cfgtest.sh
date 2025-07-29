@@ -694,6 +694,10 @@ cfgtest_builtin_presence()
 			cfgtest_builtin_group='bitops'
 			;;
 
+		expect | prefetch | choose_expr)
+			cfgtest_builtin_group='other'
+			;;
+
 		*)
 			cfgtest_epilog 'builtin' '(error)' "${cfgtest_builtin}"
 			return 1;
