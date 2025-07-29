@@ -144,6 +144,18 @@ cfgtest_epilog()
 		return 1
 	fi
 
+	if [ "${1}" = 'builtin' ] && [ "${2}" = '(error)' ]; then
+		rm -f 'a.out'
+		rm -f 'cfgtest_c3RyaWN0X21vZGUK.c'
+
+		printf '\n\ncfgtest: the %s compiler %s %s builtin.\n' \
+			"$mb_cfgtest_cfgtype"                         \
+			'does not appear to provide the'             \
+			"__builtin_${3}()" >&3
+		printf '%s\n' '------------------------' >&3
+		return 1
+	fi
+
 	if [ "${2}" = '-----' ] || [ "${2}" = '(missing)' ]; then
 		printf '\n\ncfgtest: %s %s is missing or cannot be found.\n' "${1}" "${3}" >&3
 		printf '%s\n' '------------------------' >&3
@@ -263,6 +275,8 @@ cfgtest_common_init()
 		cfgtest_fmt='%s -c -xc - -o a.out'
 	elif [ "$cfgtest_type" = 'attr' ]; then
 		cfgtest_fmt='%s -c -xc - -o a.out -Werror'
+	elif [ "$cfgtest_type" = 'builtin' ]; then
+		cfgtest_fmt='%s -xc - -o a.out -Werror -Wl,--no-undefined'
 	elif [ "$cfgtest_type" = 'lib' ]; then
 		cfgtest_fmt='%s -xc - -o a.out'
 	elif [ "$cfgtest_type" = 'ldflag' ]; then
@@ -330,9 +344,16 @@ cfgtest_common_init()
 		done
 	fi
 
-	printf ' \\\n'                           >&3
-	printf '<< _SRCEOF\n%s\n' "$cfgtest_src" >&3
-	printf '_SRCEOF\n\n\n'                   >&3
+	if [ "$cfgtest_type" = 'builtin' ]; then
+		printf ' \\\n'                   >&3
+		printf '<< _SRCEOF\n'            >&3
+		cat 'cfgtest_c3RyaWN0X21vZGUK.c' >&3
+		printf '_SRCEOF\n\n\n'           >&3
+	else
+		printf ' \\\n'                           >&3
+		printf '<< _SRCEOF\n%s\n' "$cfgtest_src" >&3
+		printf '_SRCEOF\n\n\n'                   >&3
+	fi
 
 	if [ "$mb_cfgtest_stdin_input" = 'no' ]; then
 		printf '%s' "$cfgtest_src" > 'cfgtest_c3RyaWN0X21vZGUK.c'
@@ -643,6 +664,64 @@ cfgtest_attr_presence()
 		"$mb_cfgtest_cfgtype" "$mb_cfgtest_cfgtype" >&3
 
 	cfgtest_epilog 'attr' '(ok)'
+
+	return 0
+}
+
+
+cfgtest_builtin_presence()
+{
+	# init
+	cfgtest_builtin="${1}"
+
+	case "${cfgtest_builtin}" in
+		__builtin_*)
+			cfgtest_builtin="${cfgtest_builtin#__builtin_*}"
+			;;
+	esac
+
+	cfgtest_prolog 'compiler builtin:' "${1}"
+
+	# template
+	case "${cfgtest_builtin}" in
+		*_overflow | *_overflow_p)
+			cfgtest_builtin_group='overflow'
+			;;
+
+		ffs   | clz   | ctz   | clrsb   | popcount   | parity  | \
+		ffsl  | clzl  | ctzl  | clrsbl  | popcountl  | parityl |  \
+		ffsll | clzll | ctzll | clrsbll | popcountll | parityll)
+			cfgtest_builtin_group='bitops'
+			;;
+
+		*)
+			cfgtest_epilog 'builtin' '(error)' "${cfgtest_builtin}"
+			return 1;
+			;;
+	esac
+
+	cfgtest_m4_template_dir="${mb_project_dir}/sofort/cfgtest/snippets/builtins"
+	cfgtest_m4_template="${cfgtest_m4_template_dir}/${cfgtest_builtin_group}.m4"
+
+	m4 '-D_BUILTIN='"${cfgtest_builtin}"             \
+		"${mb_project_dir}/sofort/core/modern.m4" \
+		"${cfgtest_m4_template}"                   \
+		> 'cfgtest_c3RyaWN0X21vZGUK.c'
+
+	cfgtest_common_init 'builtin'
+
+	# execute
+	cat 'cfgtest_c3RyaWN0X21vZGUK.c'                        \
+		| eval $(printf '%s' "$cfgtest_cmd")             \
+		> /dev/null 2>&3                                  \
+	|| cfgtest_epilog 'builtin' '(error)' "${cfgtest_builtin}" \
+	|| return
+
+	# result
+	printf 'cfgtest: %s compiler: above builtin is supported; see also ccenv/%s.mk.\n\n' \
+		"$mb_cfgtest_cfgtype" "$mb_cfgtest_cfgtype" >&3
+
+	cfgtest_epilog 'builtin' '(ok)'
 
 	return 0
 }
