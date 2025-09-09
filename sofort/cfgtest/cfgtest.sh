@@ -18,6 +18,12 @@
 # mb_cfgtest_headers: headers for ad-hoc inclusion with the current test
 # mb_cfgtest_attr:    if supported, the compiler-specific attribute definition
 
+# cfgtest_function_presence() input variables:
+# mb_cfgtest_fnname:  function name (i.e. memcmp)
+# mb_cfgtest_fntype:  function type (i.e. int)
+# mb_cfgtest_fnargs:  function args (i.e. const void *, const void *, size_t)
+# mb_cfgtest_fnincs:  function incs (i.e. string.h,stddef.h,stdlib.h)
+
 # special values:
 # mb_cfgtest_makevar: when set to '@' (or not set), results of the current
 #                       test shall not be appended to cfgdefs.mk.
@@ -157,6 +163,19 @@ cfgtest_epilog()
 		return 1
 	fi
 
+	if [ "${1}" = 'fnapi' ] && [ "${2}" = '(error)' ]; then
+		rm -f 'a.out'
+		rm -f 'cfgtest_c3RyaWN0X21vZGUK.c'
+
+		printf '\n\ncfgtest: %s compiler: the function %s %s %s.\n' \
+			"$mb_cfgtest_cfgtype"                      \
+			"${3}" 'is either not present'             \
+			'or does not match the provided signature' \
+			>&3
+		printf '%s\n' '------------------------' >&3
+		return 1
+	fi
+
 	if [ "${2}" = '-----' ] || [ "${2}" = '(missing)' ]; then
 		printf '\n\ncfgtest: %s %s is missing or cannot be found.\n' "${1}" "${3}" >&3
 		printf '%s\n' '------------------------' >&3
@@ -278,6 +297,8 @@ cfgtest_common_init()
 		cfgtest_fmt='%s -c -xc - -o a.out -Werror'
 	elif [ "$cfgtest_type" = 'builtin' ]; then
 		cfgtest_fmt='%s -xc - -o a.out -Werror -Wl,--no-undefined'
+	elif [ "$cfgtest_type" = 'fnapi' ]; then
+		cfgtest_fmt='%s -xc - -o a.out -Werror -Wl,--no-undefined'
 	elif [ "$cfgtest_type" = 'lib' ]; then
 		cfgtest_fmt='%s -xc - -o a.out'
 	elif [ "$cfgtest_type" = 'ldflag' ]; then
@@ -345,7 +366,7 @@ cfgtest_common_init()
 		done
 	fi
 
-	if [ "$cfgtest_type" = 'builtin' ]; then
+	if [ "$cfgtest_type" = 'builtin' ] || [ "$cfgtest_type" = 'fnapi' ]; then
 		printf ' \\\n'                   >&3
 		printf '<< _SRCEOF\n'            >&3
 		cat 'cfgtest_c3RyaWN0X21vZGUK.c' >&3
@@ -727,6 +748,45 @@ cfgtest_builtin_presence()
 		"$mb_cfgtest_cfgtype" "$mb_cfgtest_cfgtype" >&3
 
 	cfgtest_epilog 'builtin' '(ok)'
+
+	return 0
+}
+
+
+cfgtest_function_presence()
+{
+	# init
+	cfgtest_fnname="${mb_cfgtest_fnname}"
+
+	cfgtest_prolog 'function presence:' "${cfgtest_fnname}"
+
+	# template
+	cfgtest_m4_template_dir="${mb_project_dir}/sofort/cfgtest/snippets/funcs"
+	cfgtest_m4_template="${cfgtest_m4_template_dir}/fnapi.m4"
+
+	m4                                           \
+		'-D_FUNCNAME='"${mb_cfgtest_fnname}"  \
+		'-D_FUNCTYPE='"${mb_cfgtest_fntype}"   \
+		'-D_FUNCARGS='"${mb_cfgtest_fnargs}"    \
+		'-D_FUNCINCS='"${mb_cfgtest_fnincs}"     \
+		"${mb_project_dir}/sofort/core/modern.m4" \
+		"${cfgtest_m4_template}"                   \
+		> 'cfgtest_c3RyaWN0X21vZGUK.c'
+
+	cfgtest_common_init 'fnapi'
+
+	# execute
+	cat 'cfgtest_c3RyaWN0X21vZGUK.c'                        \
+		| eval $(printf '%s' "$cfgtest_cmd")             \
+		> /dev/null 2>&3                                  \
+	|| cfgtest_epilog 'fnapi' '(error)' "${cfgtest_fnname}"    \
+	|| return
+
+	# result
+	printf 'cfgtest: %s compiler: above function is present with a matching signature; see also ccenv/%s.mk.\n\n' \
+		"$mb_cfgtest_cfgtype" "$mb_cfgtest_cfgtype" >&3
+
+	cfgtest_epilog 'fnapi' '(ok)'
 
 	return 0
 }

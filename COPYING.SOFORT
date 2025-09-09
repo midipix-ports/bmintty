@@ -23,6 +23,7 @@
 /* ./sofort/cfgtest/snippets/builtins/bitops.m4                              */
 /* ./sofort/cfgtest/snippets/builtins/other.m4                               */
 /* ./sofort/cfgtest/snippets/builtins/overflow.m4                            */
+/* ./sofort/cfgtest/snippets/funcs/fnapi.m4                                  */
 /* ./sofort/config/cfgdefs.in                                                */
 /* ./sofort/config/config.vars                                               */
 /* ./sofort/config/flag.vars                                                 */
