@@ -12,6 +12,7 @@
 # mb_cfgtest_cc:      the compiler used for the current test
 # mb_cfgtest_pkgconf: the pkgconf utility used for the current test
 # mb_cfgtest_cflags:  the compiler flags used for the current test
+# mb_cfgtest_ldflags: the linker flags used for the current test
 # mb_cfgtest_cfgtype: the type of the current test (host/native)
 # mb_cfgtest_makevar: the make variable affected by the current test
 # mb_cfgtest_headers: headers for ad-hoc inclusion with the current test
