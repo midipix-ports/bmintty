@@ -1047,9 +1047,11 @@ ccenv_set_os_pe()
 		case "$ccenv_cchost" in
 			*-midipix | *-midipix-* )
 				ccenv_os='midipix' ;;
+			*-windows-gnu )
+				ccenv_os='mingw' ;;
 			*-mingw | *-mingw32 | *-mingw64 )
 				ccenv_os='mingw' ;;
-			*-mingw-* | *-mingw32-* | *-mingw64 )
+			*-mingw-* | *-mingw32-* | *-mingw64-* )
 				ccenv_os='mingw' ;;
 			*-msys | *-msys2 | *-msys-* | *-msys2-* )
 				ccenv_os='msys' ;;
@@ -1081,15 +1083,23 @@ ccenv_set_os_pe()
 
 	if [ -z "$ccenv_os" ] && [ -n "$ccenv_objdump_bfd" ]; then
 		$ccenv_objdump_bfd -x $ccenv_image          \
-			| grep -i 'DLL Name' | grep '.CRT'  \
+			| grep -i 'DLL Name'                \
 				> /dev/null                 \
 		&& $ccenv_objdump_bfd -x $ccenv_image       \
-			| grep -i 'DLL Name' | grep '.bss'  \
+			| grep '.CRT'                       \
 				> /dev/null                 \
 		&& $ccenv_objdump_bfd -x $ccenv_image       \
-			| grep -i 'DLL Name' | grep '.tls'  \
+			| grep '.bss'                       \
+				> /dev/null                 \
+		&& $ccenv_objdump_bfd -x $ccenv_image       \
+			| grep '.tls'                       \
 				> /dev/null                 \
 		&& ccenv_os='mingw'
+	fi
+
+	if [ -z "$ccenv_os" ]; then
+		error_msg "ccenv_set_os_pe: failed to detect the host operating system."
+		config_failure
 	fi
 }
 
