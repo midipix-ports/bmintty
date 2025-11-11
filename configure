@@ -197,11 +197,6 @@ init_vars()
 		TESTCFGDIR="${mb_testcfgdir:+$mb_project_dir/$mb_testcfgdir}"
 	fi
 
-	if [ -z "${TESTDATADIR}" ]; then
-		TESTDATADIR="${mb_testdatadir:-input}"
-		TESTDATADIR="${TESTCFGDIR:+${TESTCFGDIR}/${TESTDATADIR}}"
-	fi
-
 	if [ -z "${TESTFLAGS}" ]; then
 		TESTFLAGS='--run-all'
 	fi
@@ -646,7 +641,7 @@ common_defaults()
 
 	# unit tests
 	[ -n "$mb_testcfgdir" ] 	|| mb_testcfgdir=
-	[ -n "$mb_testdatadir" ] 	|| mb_testcfgdir=${mb_testcfgdir:+${mb_testcfgdir}/input}
+	[ -n "$mb_testdatadir" ] 	|| mb_testdatadir=${mb_testcfgdir:+${mb_testcfgdir}/input}
 
 	# switches
 	[ -n "$mb_cflags_debug" ]	|| mb_cflags_debug=$mb_default_cflags_debug
