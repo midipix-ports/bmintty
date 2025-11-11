@@ -309,6 +309,7 @@ distclean:	clean
 		rm -f ccenv/host.mk
 		rm -f ccenv/native.mk
 		rm -f cfgdefs.mk
+		rm -f testcfg.mk
 		rm -f usrdefs.mk
 		rm -f config.log
 		rm -f @makefile@
