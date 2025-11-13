@@ -562,7 +562,7 @@ common_defaults()
 	if [ -d "$mb_testcfgdir" ]; then
 		printf '%-24s%s\n' "TESTFLAGS"   "= ${TESTFLAGS}"         > testcfg.mk
 		printf '%-24s%s\n' "TESTCFLAGS"  '= $(CFLAGS)'           >> testcfg.mk
-		printf '%-24s%s\n\n' "TESTLDFLAGS" '= $(LDFLAGS_SHARED)' >> testcfg.mk
+		printf '%-24s%s\n\n' "TESTLDFLAGS" '= -Wl,-rpath,lib $(LDFLAGS_APP)' >> testcfg.mk
 		printf '%s\n' 'include $(TESTCFGDIR)/project/testcfg.mk' >> testcfg.mk
 	else
 		cat $sfrt_testcfg_in > testcfg.mk
